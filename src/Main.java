@@ -1,6 +1,7 @@
 import beans.propertyeditors.CustomDateEditor;
 import beans.propertyeditors.CustomNumberEditor;
 import beans.propertyeditors.PropertiesEditor;
+import beans.propertyeditors.PropertyValuesEditor;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
@@ -8,9 +9,9 @@ import java.text.NumberFormat;
 public class Main {
 
     public static void main(String[] args) {
-        CustomNumberEditor numberEditor = new CustomNumberEditor(Float.class, NumberFormat.getPercentInstance(), false);
-        numberEditor.setAsText("10%");
+        PropertyValuesEditor propertyValuesEditor = new PropertyValuesEditor();
+        propertyValuesEditor.setAsText("name=jeffery\r\nage=20");
 
-        System.out.println(numberEditor.getValue());
+        System.out.println(propertyValuesEditor.getValue());
     }
 }
