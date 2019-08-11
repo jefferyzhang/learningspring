@@ -1,17 +1,19 @@
-import beans.propertyeditors.CustomDateEditor;
-import beans.propertyeditors.CustomNumberEditor;
-import beans.propertyeditors.PropertiesEditor;
-import beans.propertyeditors.PropertyValuesEditor;
+import beans.BeanWrapperImpl;
 
-import java.text.DateFormat;
-import java.text.NumberFormat;
+import java.beans.PropertyVetoException;
 
 public class Main {
 
-    public static void main(String[] args) {
-        PropertyValuesEditor propertyValuesEditor = new PropertyValuesEditor();
-        propertyValuesEditor.setAsText("name=jeffery\r\nage=20");
+    public static void main(String[] args) throws PropertyVetoException {
+        Person person = new Person();
+        BeanWrapperImpl beanWrapper = new BeanWrapperImpl(person);
 
-        System.out.println(propertyValuesEditor.getValue());
+        beanWrapper.setPropertyValue("name","jeffery");
+        beanWrapper.setPropertyValue("age",3);
+
+        System.out.println(person.toString());
     }
+
+
 }
+
