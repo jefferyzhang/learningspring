@@ -70,7 +70,7 @@ public class BeanWrapperImpl implements BeanWrapper {
             // register all editors in our standard package
             PropertyEditorManager.setEditorSearchPath(new String[] {
                     "sun.beans.editors",
-                    "com.interface21.beans.propertyeditors"
+                    "beans.propertyeditors"
             });
         }
         catch (SecurityException ex) {
