@@ -1,6 +1,7 @@
 package test;
 
-import beans.PropertyValues;
+
+import java.util.List;
 
 public class Person{
     private String name;
@@ -8,7 +9,7 @@ public class Person{
     private Person partner;
     private String[] scores;
     private boolean girl;
-    private PropertyValues pvs;
+    private List<Person> children;
 
     public String getName() {
         return name;
@@ -55,11 +56,11 @@ public class Person{
         this.girl = girl;
     }
 
-    public PropertyValues getPvs() {
-        return pvs;
+    public List<Person> getChildren() {
+        return children;
     }
 
-    public void setPvs(PropertyValues pvs) {
-        this.pvs = pvs;
+    public void setChildren(List<Person> children) {
+        this.children = children;
     }
 }
