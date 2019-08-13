@@ -1,6 +1,6 @@
-import beans.PropertyValues;
+package test;
 
-import java.util.List;
+import beans.PropertyValues;
 
 public class Person{
     private String name;
