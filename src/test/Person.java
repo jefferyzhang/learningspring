@@ -3,10 +3,10 @@ package test;
 
 import java.util.List;
 
-public class Person{
+public class Person implements IPerson{
     private String name;
     private int age;
-    private Person partner;
+    private IPerson partner;
     private String[] scores;
     private boolean girl;
     private List<Person> children;
@@ -32,13 +32,7 @@ public class Person{
         return "name:"+name+",age:"+age;
     }
 
-    public Person getPartner() {
-        return partner;
-    }
 
-    public void setPartner(Person partner) {
-        this.partner = partner;
-    }
 
     public String[] getScores() {
         return scores;
@@ -62,5 +56,18 @@ public class Person{
 
     public void setChildren(List<Person> children) {
         this.children = children;
+    }
+
+    @Override
+    public String sayHi() {
+        return "hi,i'm "+getName();
+    }
+
+    public IPerson getPartner() {
+        return partner;
+    }
+
+    public void setPartner(IPerson partner) {
+        this.partner = partner;
     }
 }

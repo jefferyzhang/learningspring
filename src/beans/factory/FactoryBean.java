@@ -14,7 +14,7 @@ import beans.PropertyValues;
  * <br>FactoryBeans can support singletons and prototypes.
  * @author  Rod Johnson
  * @since March 08, 2003
- * @see com.interface21.beans.factory.BeanFactory
+ * @see
  * @version $Id: FactoryBean.java,v 1.1 2003/03/10 07:38:49 johnsonr Exp $
  */
 public interface FactoryBean {
