@@ -32,6 +32,4 @@ public interface Pointcut {
             return "Pointcut.TRUE";
         }
     };
-
-
 }
