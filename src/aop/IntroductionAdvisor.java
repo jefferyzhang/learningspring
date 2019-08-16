@@ -1,6 +1,5 @@
 package aop;
 
-import aop.framework.AopConfigException;
 
 /**
  * Superinterface for advisors that perform one or more
@@ -31,9 +30,9 @@ public interface IntroductionAdvisor extends Advisor {
     /**
      * Can the advised interfaces be implemented by the
      * introduction advice? Invoked before adding an IntroductionAdvisor.
-     * @throws AopConfigException if the advised interfaces can't
+     * @throws   if the advised interfaces can't
      * be implemented by the introduction advice
      */
-    void validateInterfaces() throws AopConfigException;
+    void validateInterfaces()  ;
 
 }

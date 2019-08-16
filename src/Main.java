@@ -1,3 +1,6 @@
+import aop.support.NameMatchMethodPointcut;
+import aop.support.RegexpMethodPointcut;
+import aop.support.RootClassFilter;
 import beans.MutablePropertyValues;
 import beans.factory.support.ManagedList;
 import beans.factory.support.RuntimeBeanReference;
@@ -16,8 +19,13 @@ public class Main {
 
     private static Log logger = LogFactory.getLog("main");
 
-    public static void main(String[] args) throws PropertyVetoException, IntrospectionException {
-        testSimpleBeanFactory();
+    public static void main(String[] args) throws PropertyVetoException, IntrospectionException, NoSuchMethodException {
+
+        RegexpMethodPointcut regexpMethodPointcut = new RegexpMethodPointcut();
+        regexpMethodPointcut.setPattern("test.Person.sayHi");
+
+        boolean matches = regexpMethodPointcut.matches(Person.class.getMethod("sayHi"), Person.class);
+        System.out.println(matches);
     }
 
     private static void testSimpleBeanFactory() {
