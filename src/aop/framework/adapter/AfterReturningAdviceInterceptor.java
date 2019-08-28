@@ -13,7 +13,7 @@ import org.aopalliance.intercept.MethodInvocation;
  * @author Rod Johnson
  * @version $Id: AfterReturningAdviceInterceptor.java,v 1.3 2004/03/19 18:43:17 johnsonr Exp $
  */
-final class AfterReturningAdviceInterceptor implements MethodInterceptor {
+public final class AfterReturningAdviceInterceptor implements MethodInterceptor {
 
     private AfterReturningAdvice advice;
 

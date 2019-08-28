@@ -1,31 +1,57 @@
-import aop.support.NameMatchMethodPointcut;
-import aop.support.RegexpMethodPointcut;
-import aop.support.RootClassFilter;
+import aop.Pointcut;
+import aop.framework.*;
+import aop.framework.adapter.AfterReturningAdviceInterceptor;
+import aop.support.DefaultPointcutAdvisor;
+import aop.target.SingletonTargetSource;
 import beans.MutablePropertyValues;
 import beans.factory.support.ManagedList;
 import beans.factory.support.RuntimeBeanReference;
-import test.IPerson;
-import test.PerfFactoryBean;
-import test.Person;
-import test.SimpleBeanFactory;
-
-import java.beans.*;
-import java.util.HashMap;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import test.*;
+import test.invokechain.*;
+
+import java.beans.IntrospectionException;
+import java.beans.PropertyVetoException;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class Main {
 
     private static Log logger = LogFactory.getLog("main");
 
-    public static void main(String[] args) throws PropertyVetoException, IntrospectionException, NoSuchMethodException {
+    public static void main(String[] args)  {
 
-        RegexpMethodPointcut regexpMethodPointcut = new RegexpMethodPointcut();
-        regexpMethodPointcut.setPattern("test.Person.sayHi");
 
-        boolean matches = regexpMethodPointcut.matches(Person.class.getMethod("sayHi"), Person.class);
-        System.out.println(matches);
+    }
+
+    private static void proxyFactoryTest() {
+        ProxyFactory factory = new ProxyFactory(new Class[]{IPerson.class});
+
+        factory.setTargetSource(new SingletonTargetSource(new Person(){{setName("jf");}}));
+
+
+        System.out.println(factory.getTargetSource());
+        System.out.println(factory.getProxiedInterfaces()[0]);
+
+
+        factory.addInterceptor(new AfterReturningAdviceInterceptor(new CheckReturnMethodCallAdvice()));
+        factory.addAdvisor(new DefaultPointcutAdvisor(Pointcut.TRUE, new LogMethodCallAdvice()));
+
+        System.out.println(factory.getAdvisors()[0]);
+
+
+        IPerson personProxy = (IPerson) factory.getProxy();
+
+        personProxy.sayHi();
+    }
+
+    private static void invokechaintest() {
+        PX px = new PX();
+        AdminInvoker adminInvoker = new AdminInvoker();
+        BossInvoker bossInvoker = new BossInvoker();
+        InvokeProcessChain invokeProcessChain = new InvokeProcessChain(Arrays.asList(bossInvoker,adminInvoker), px);
+        invokeProcessChain.process();
     }
 
     private static void testSimpleBeanFactory() {
@@ -70,6 +96,7 @@ public class Main {
         System.out.println(jeffery.getChildren().get(0));
         System.out.println(jeffery.getPartner().sayHi());
     }
+
 }
 
 
