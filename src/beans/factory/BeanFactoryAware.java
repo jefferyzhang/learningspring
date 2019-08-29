@@ -9,14 +9,14 @@ package beans.factory;
  * @since 11-Mar-2003
  * @version $Revision: 1.1 $
  */
-public interface Lifecycle {
+public interface BeanFactoryAware {
 
     /**
-     * Lifecycle callback beans used in a BeanFactory can
+     * BeanFactoryAware callback beans used in a BeanFactory can
      * implement to receive callbacks exposing the factory itself.
      * This enables them to obtain other beans from the factory.
      * <br>
-     * If the bean also implements InitializingBean, Lifecycle methods
+     * If the bean also implements InitializingBean, BeanFactoryAware methods
      * will be invoked after the <code>afterPropertiesSet</code>
      * method.
      * @param beanFactory owning BeanFactory. May not be null.
@@ -25,7 +25,7 @@ public interface Lifecycle {
      * we want methods to declare more precise exceptions, but
      * in this case the owning BeanFactory will catch and handle the
      * exception (treating it as fatal), and we want
-     * to make it easy to implement Lifecycle beans by freeing developers
+     * to make it easy to implement BeanFactoryAware beans by freeing developers
      * from the need to catch and wrap fatal exceptions. Exceptions thrown
      * here are considered fatal.
      */
